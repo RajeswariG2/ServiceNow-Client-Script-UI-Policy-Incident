@@ -40,6 +40,7 @@ To demonstrate how ServiceNow client-side controls enforce data integrity on Inc
 - Type: onSubmit
 - Active: true
 - Script:
+- ```javascript
 function onSubmit() {
     if (g_form.getValue('impact') == '1' && g_form.getValue('assigned_to') == '') {
         g_form.showErrorBox('assigned_to', 'Assigned To is mandatory for High impact Incidents.');
@@ -47,7 +48,7 @@ function onSubmit() {
     }
     return true;
 }
-- Purpose: High Impact incident ku Assigned To illana form submit aagathu da.
+- Purpose: If Assigned To is empty for a High Impact incident, the form will not be submitted.
 
 ### Task 5 - onCellEdit Client Script (Prevent State list edit)
 - Name: Prevent State list edit
@@ -56,9 +57,10 @@ function onSubmit() {
 - Field Name: State
 - Active: true
 - Script:
+- ```javascript
 function onCellEdit(sysIDs, table, oldValues, newValue, callback) {
     alert('State cannot be updated using list editing. Please open the Incident.');
     callback(false);
 }
-- Purpose: List view la State ah edit panna vidathu da.
+- Purpose: Prevents editing the State field via list view.
  
