@@ -34,28 +34,31 @@ To demonstrate how ServiceNow client-side controls enforce data integrity on Inc
 - **Table:** Incident
 - **Type:** onChange
 - **Field:** Impact
-
-**Script:**
-```javascript
-function onChange(control, oldValue, newValue, isLoading) {
-    if (isLoading || newValue == '') {
-        return;
-    }
-    if (newValue == '1') {
-        g_form.setValue('urgency', '1');
-        g_form.addInfoMessage('Urgency set to High for High impact incident.');
-    }
+### Task 4 - onSubmit Client Script (Validate Assigned To)
+- Name: Validate Assigned To for High Impact
+- Table: Incident [incident]
+- Type: onSubmit
+- Active: true
+- Script:
 function onSubmit() {
-    if (g_form.getValue('impact') == '1' &&
-        g_form.getValue('assigned_to') == '') {
-        g_form.showErrorBox(
-            'assigned_to',
-            'Assigned To is mandatory for High impact incidents.'
-        );
+    if (g_form.getValue('impact') == '1' && g_form.getValue('assigned_to') == '') {
+        g_form.showErrorBox('assigned_to', 'Assigned To is mandatory for High impact Incidents.');
         return false;
     }
     return true;
-}function onCellEdit(sysIDs, table, oldValues, newValue, callback) {
+}
+- Purpose: High Impact incident ku Assigned To illana form submit aagathu da.
+
+### Task 5 - onCellEdit Client Script (Prevent State list edit)
+- Name: Prevent State list edit
+- Table: Incident [incident]
+- Type: onCellEdit
+- Field Name: State
+- Active: true
+- Script:
+function onCellEdit(sysIDs, table, oldValues, newValue, callback) {
     alert('State cannot be updated using list editing. Please open the Incident.');
     callback(false);
 }
+- Purpose: List view la State ah edit panna vidathu da.
+ 
