@@ -1,4 +1,4 @@
-# Phase 1 – Brainstorming and Ideation
+# Phase 1 - Brainstorming and Ideation
 
 ## Problem Statement
 Incident records may contain incomplete or inconsistent information.
